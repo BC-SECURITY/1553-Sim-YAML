@@ -1,3 +1,7 @@
+Download the required docker images from
+https://hub.docker.com/repositories/hubbl3
+ensure that they are all in one folder then run the command below 
+
 ```
                +-----------------------------+
                |   Bus Controller (FCC)      |
@@ -19,11 +23,9 @@
 
 
 ```
-docker compose build
 docker compose up -d
-docker exec -it tool python network_tool.py
 ```
-
+You can access the webui at localhost:5001
 
 Target	IP Address	Command	Expected Response
 rt1	172.28.1.11	BC -> RT1: Request Position	RT1: Position: LAT123...
