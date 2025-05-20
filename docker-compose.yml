@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  bc:
+    build: ./bc
+    container_name: bc
+    networks:
+      busnet:
+        ipv4_address: 172.28.1.10
+
+  rt1:
+    build: ./rt1
+    container_name: rt1
+    environment:
+      - RT_ID=1
+      - RT_NAME=INS
+    networks:
+      busnet:
+        ipv4_address: 172.28.1.11
+
+  rt2:
+    build: ./rt2
+    container_name: rt2
+    environment:
+      - RT_ID=2
+      - RT_NAME=Radar
+    networks:
+      busnet:
+        ipv4_address: 172.28.1.12
+
+  rt3:
+    build: ./rt3
+    container_name: rt3
+    environment:
+      - RT_ID=3
+      - RT_NAME=WeaponsMgmt
+    networks:
+      busnet:
+        ipv4_address: 172.28.1.13
+
+  rt4:
+    build: ./rt4
+    container_name: rt4
+    environment:
+      - RT_ID=4
+      - RT_NAME=EngineMonitor
+    networks:
+      busnet:
+        ipv4_address: 172.28.1.14
+
+  rt5:
+    build: ./rt5
+    container_name: rt5
+    environment:
+      - RT_ID=5
+      - RT_NAME=DataRecorder
+    networks:
+      busnet:
+        ipv4_address: 172.28.1.15
+
+  tool:
+    build: ./tool
+    container_name: tool
+    stdin_open: true
+    tty: true
+    networks:
+      busnet:
+        ipv4_address: 172.28.1.17
+  webui:
+    build: ./webui
+    container_name: webui
+    ports:
+      - "5001:5001"
+    networks:
+      busnet:
+        ipv4_address: 172.28.1.16
+
+networks:
+  busnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.1.0/24
